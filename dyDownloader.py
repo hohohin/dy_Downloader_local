@@ -5,6 +5,7 @@ import re
 import os
 
 #version(5)
+#2024年8月13日15:04:52
 
 flag = True
 
@@ -52,7 +53,7 @@ while flag:
 
         page.get(first_url)
 
-        name = page.title
+        name = page.ele('tag:title').text
 
         ele1 = page.ele('.xg-video-container')
 
