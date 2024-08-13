@@ -4,7 +4,7 @@ from datetime import datetime
 import re
 import os
 
-#version(4)
+#version(5)
 
 flag = True
 
@@ -52,15 +52,20 @@ while flag:
 
         page.get(first_url)
 
-        video_src = page.ele('.xg-video-container')#.attr('src')
-        
+        name = page.title
+
+        ele1 = page.ele('.xg-video-container')
+
+        ele2 = ele1.child('',1).child('',1)
+
+        video_src = ele2.attr('src')
 
         page.get(video_src)
 
         d = DownloadKit(goal_path="Downloads")
         #m = d.add(video_src)
         
-        file_name = stringify_current_time() + ".mp4"
+        file_name = name + ".mp4"
 
         d.download(video_src, rename=file_name, suffix='')
         #print(m.file_name)
